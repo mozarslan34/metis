@@ -24,6 +24,6 @@ public class DenemeController {
 
     @PostConstruct
     public void sayHello(){
-        System.out.println("hello metis");
+        System.out.println("hello metisd");
     }
 }
