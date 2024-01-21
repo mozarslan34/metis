@@ -8,18 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Emre Dinç
  */
 @Entity
-@Table(name = "teacher")
+@Table(name = EntityConstantsUtil.PREFIX_TB + "teacher")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Teacher extends User {
+public class Teacher extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +34,11 @@ public class Teacher extends User {
     @Column(name = "introduction", columnDefinition = "TEXT")
     private String introduction;
 
-    @Enumerated(EnumType.STRING)
-    private GraduateDegree graduateSchool;
+    @Column(name = "graduate_school")
+    private String graduateSchool;
 
-    @Column(name = "graduate_degree")
-    private String graduateDegree;
+    @Enumerated(EnumType.STRING)
+    private GraduateDegree graduateDegree;
 
     @Column(name = "is_retired")
     private boolean isRetired;
@@ -47,5 +48,8 @@ public class Teacher extends User {
 
     @Column(name = "current_school")
     private String currentSchool;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Appointment> appointment;
 
 }

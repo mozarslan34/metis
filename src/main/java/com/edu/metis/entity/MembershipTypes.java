@@ -1,9 +1,6 @@
 package com.edu.metis.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +12,7 @@ import java.io.Serializable;
  * @author Emre Dinç
  */
 @Entity
-@Table(name = "membership_types")
+@Table(name = EntityConstantsUtil.PREFIX_TB + "membership_types")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,6 +20,7 @@ import java.io.Serializable;
 public class MembershipTypes extends BaseEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -34,6 +32,9 @@ public class MembershipTypes extends BaseEntity implements Serializable {
 
     @Column(name = "deadline")
     private String deadline;
+
+    @OneToOne(mappedBy = "membershipType")
+    private Student student;
 
 
 }

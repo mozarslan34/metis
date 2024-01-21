@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = EntityConstantsUtil.PREFIX_TB + "user")
 public class User extends BaseEntity implements Serializable {
 
     @Id
@@ -39,5 +39,11 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = "type")
     private String type;
+
+    @OneToOne(mappedBy = "user")
+    private Student student;
+
+    @OneToOne(mappedBy = "user")
+    private Teacher teacher;
 
 }

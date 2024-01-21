@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * @author Emre Dinç
  */
 @Entity
-@Table(name = "appointment")
+@Table(name = EntityConstantsUtil.PREFIX_TB + "appointment")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 public class Appointment extends BaseEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
